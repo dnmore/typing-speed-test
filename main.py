@@ -1,7 +1,8 @@
-# display WPM result to user
+# reset option: clear wpm & typed words
+
 
 from tkinter import *
-from random import choice
+from tkinter import messagebox
 
 FONT = "Georgia"
 LIGHT_PINK = "#FFE6FF"
@@ -12,25 +13,26 @@ words = ["dark", "every", "few", "water", "person", "hard", "him", "kind", "show
 
 user_typed_words = []
 
-
 # --------------- Display word ------#
 
+position = 0
+
+
 def display_word():
-    random_word = choice(words)
-    words_box.config(text=random_word)
+    global position
+    if position < len(words):
+        words_box.config(text=words[position])
+        position += 1
+    else:
+        position = 0
     get_user_entry()
-
-
-
 
 
 # -------------- Get user entry ------------------ #
 
 def get_user_entry():
     typed_word = user_input.get()
-    # print(typed_word)
     user_typed_words.append(typed_word)
-    print(user_typed_words)
     user_input.delete(0, END)
 
 
@@ -38,12 +40,11 @@ def get_user_entry():
 # ----Source: https://www.typing.com/blog/what-is-words-per-minute/ ---#
 
 def calculate_wpm():
+    global user_typed_words
     char_list = ''.join(user_typed_words)
-    print(char_list)
     total_chars_typed = len(char_list)
-    print(total_chars_typed)
     wpm = total_chars_typed / 5
-    wpm_label.config(text=f"WPM: {wpm}")
+    return wpm
 
 
 # -------------- Countdown mechanism ---------------#
@@ -53,7 +54,7 @@ def count_down(count):
     if count > 0:
         window.after(1000, count_down, count - 1)
     if count == 0:
-        calculate_wpm()
+        messagebox.showinfo(title="Well Done!", message=f"Thanks for taking the test! Your WPM is {calculate_wpm()}")
 
 
 # -------------- Start the timer ------ #
@@ -93,8 +94,6 @@ next_button = Button(text="Next", bg=PURPLE, font=(FONT, 12), padx=10, border="0
                      command=display_word)
 next_button.grid(column=2, row=4)
 
-wpm_label = Label(text="WPM: ", bg=LIGHT_PINK, font=(FONT, 14, "bold"))
-wpm_label.grid(column=2, row=5)
-
 display_word()
+
 window.mainloop()
