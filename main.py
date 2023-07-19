@@ -1,6 +1,3 @@
-# reset option: clear wpm & typed words
-
-
 from tkinter import *
 from tkinter import messagebox
 
@@ -95,5 +92,4 @@ next_button = Button(text="Next", bg=PURPLE, font=(FONT, 12), padx=10, border="0
 next_button.grid(column=2, row=4)
 
 display_word()
-
 window.mainloop()
