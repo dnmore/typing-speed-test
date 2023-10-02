@@ -30,7 +30,6 @@ def display_word():
 def get_user_entry():
     typed_word = user_input.get()
     user_typed_words.append(typed_word)
-    print(user_typed_words)
     user_input.delete(0, END)
 
 
