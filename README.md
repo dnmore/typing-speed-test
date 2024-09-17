@@ -1,9 +1,14 @@
 # Typing Speed Test
-***
-GUI application using Tkinter. One-minute typing test and at the end, you'll get your typing speed in WPM.
+
+## Overview
+A GUI application that tests the user's typing speed. The test lasts one minute, and at the end, the application calculates and displays the typing speed in WPM (Words Per Minute).
+
+## Tech Stack
+* `Python` – Programming language
+* `Tkinter`– GUI library for Python
 
 ### Screenshot
 ![Full preview of the page](/app_preview.PNG)
 
 ## License
-MIT
+This project is licensed under the MIT License.
